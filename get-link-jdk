@@ -50,7 +50,7 @@ temp_links=$(mktemp)
 temp_sorted=$(mktemp)
 
 # Coletar links da página informada e filtra pela extensão desejada:
-curl -s "$BASE_URL" | grep -oE 'href="[^"]*' | sed 's/href="//' | grep -E "$EXTENSION$" > "$temp_links"
+curl -s --compressed "$BASE_URL" | grep -oE 'href="[^"]*' | sed 's/href="//' | grep -E "$EXTENSION$" > "$temp_links"
 
 # Contar o total de arquivos encontrados
 total_files=$(wc -l < "$temp_links")
